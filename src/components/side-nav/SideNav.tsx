@@ -6,16 +6,18 @@ import {
   HISTORY_ROUTE,
   ROCKETS_ROUTE,
 } from "../../routes/app-routes-constants";
+import { useIt } from "../../store/useStore";
 
 export const SideNav = () => {
-  const { getRockets, getHistory, isMenuOpen, handleMenu } = useStore(
-    (state) => ({
-      getRockets: state.getRockets,
-      getHistory: state.getHistory,
-      isMenuOpen: state.isMenuOpen,
-      handleMenu: state.handleMenu,
-    })
-  );
+  const { getHistory, isMenuOpen, handleMenu } = useStore((state) => ({
+    getRockets: state.getRockets,
+    getHistory: state.getHistory,
+    isMenuOpen: state.isMenuOpen,
+    handleMenu: state.handleMenu,
+    setLoading: state.setLoading,
+  }));
+
+  const { test } = useIt();
 
   return (
     <S.SideNav isMenuOpen={isMenuOpen}>
@@ -24,7 +26,7 @@ export const SideNav = () => {
       <S.NavBox>
         <S.NavLink to={BASE_ROUTE}>Home</S.NavLink>
 
-        <S.NavLink to={ROCKETS_ROUTE} onClick={getRockets}>
+        <S.NavLink to={ROCKETS_ROUTE} onClick={test}>
           Rockets
         </S.NavLink>
 

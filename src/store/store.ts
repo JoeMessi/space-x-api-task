@@ -5,15 +5,18 @@ interface Store {
   rockets: Rocket[];
   history: History[];
   isMenuOpen: boolean;
+  loading: boolean;
   getRockets: () => void;
   getHistory: () => void;
   handleMenu: () => void;
+  setLoading: (loading: boolean) => void;
 }
 
 export const useStore = create<Store>((set) => ({
   rockets: [],
   history: [],
   isMenuOpen: true,
+  loading: false,
 
   getRockets: async () => {
     const rockets = await fetchRockets();
@@ -28,6 +31,8 @@ export const useStore = create<Store>((set) => ({
   handleMenu: () => {
     set((state) => ({ ...state, isMenuOpen: !state.isMenuOpen }));
   },
-}));
 
-// set((state) => ({ ...state, ships: [...state.ships, ...ships] }));
+  setLoading: (loading: boolean) => {
+    set((state) => ({ ...state, loading: loading }));
+  },
+}));

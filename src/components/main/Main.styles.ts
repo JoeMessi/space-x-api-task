@@ -8,6 +8,7 @@ interface Props {
 export const Main = styled.main<Props>`
   transition: margin-left 0.5s;
   padding: 0;
+  height: 100vh;
 
   margin-left: ${({ isMenuOpen }) => (isMenuOpen ? "250px" : "0")};
   margin-left: 0;
