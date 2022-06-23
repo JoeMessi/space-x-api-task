@@ -1,30 +1,37 @@
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "../shared/button/Button";
+import React from "react";
 import { useStore } from "../../store/store";
 import * as S from "./SideNav.styles";
+import {
+  BASE_ROUTE,
+  HISTORY_ROUTE,
+  ROCKETS_ROUTE,
+} from "../../routes/app-routes-constants";
 
-interface SideNavProps {
-  isMenuOpen: boolean;
-  handleisMenuOpen: () => void;
-}
-
-export const SideNav: FC<SideNavProps> = ({ isMenuOpen, handleisMenuOpen }) => {
-  const { getRockets, getHistory } = useStore((state) => ({
-    getRockets: state.getRockets,
-    getHistory: state.getHistory,
-  }));
+export const SideNav = () => {
+  const { getRockets, getHistory, isMenuOpen, handleMenu } = useStore(
+    (state) => ({
+      getRockets: state.getRockets,
+      getHistory: state.getHistory,
+      isMenuOpen: state.isMenuOpen,
+      handleMenu: state.handleMenu,
+    })
+  );
 
   return (
     <S.SideNav isMenuOpen={isMenuOpen}>
-      <S.CloseBtn onClick={handleisMenuOpen}>+</S.CloseBtn>
-      <Link to="/rockets">
-        <Button label="Rockets" onClick={getRockets} />
-      </Link>
+      <S.CloseBtn onClick={handleMenu}>+</S.CloseBtn>
 
-      <Link to="/history">
-        <Button label="History" onClick={getHistory} />
-      </Link>
+      <S.NavBox>
+        <S.NavLink to={BASE_ROUTE}>Home</S.NavLink>
+
+        <S.NavLink to={ROCKETS_ROUTE} onClick={getRockets}>
+          Rockets
+        </S.NavLink>
+
+        <S.NavLink to={HISTORY_ROUTE} onClick={getHistory}>
+          History
+        </S.NavLink>
+      </S.NavBox>
     </S.SideNav>
   );
 };

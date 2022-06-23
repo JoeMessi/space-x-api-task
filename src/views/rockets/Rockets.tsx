@@ -1,25 +1,25 @@
-import React, { FC } from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../../store/store";
 import { Card } from "../../components/card/Card";
 import * as S from "./Rockets.styles";
 
-interface MainProps {
-  isMenuOpen: boolean;
-  handleisMenuOpen: () => void;
-}
+export const Rockets = () => {
+  const { rockets, getRockets } = useStore((state) => ({
+    rockets: state.rockets,
+    getRockets: state.getRockets,
+  }));
 
-export const Rockets: FC<MainProps> = ({ isMenuOpen, handleisMenuOpen }) => {
-  const rockets = useStore((state) => state.rockets);
+  useEffect(() => {
+    getRockets();
+  }, []);
 
   return (
-    <S.Main isMenuOpen={isMenuOpen}>
-      <S.OpenMenu onClick={handleisMenuOpen}>0</S.OpenMenu>
+    <S.RocketsSection>
+      <S.H2Box>
+        <S.H2>Rockets</S.H2>
+      </S.H2Box>
 
-      <S.Header>
-        <S.H1>Rockets</S.H1>
-      </S.Header>
-
-      <S.ConentSection>
+      <S.RocketsCards>
         {rockets.map((rocket) => (
           <Card
             imgUrl={rocket.flickr_images[0]}
@@ -28,7 +28,7 @@ export const Rockets: FC<MainProps> = ({ isMenuOpen, handleisMenuOpen }) => {
             wikipedia={rocket.wikipedia}
           />
         ))}
-      </S.ConentSection>
-    </S.Main>
+      </S.RocketsCards>
+    </S.RocketsSection>
   );
 };

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "./Card.css";
+import * as S from "./Card.styles";
 
 interface CardProps {
   imgUrl: string;
@@ -18,19 +18,19 @@ export const Card: FC<CardProps> = ({
   wikipedia,
 }) => {
   return (
-    <article className="article-card">
-      <div className="card-hero">
+    <S.CardArticle>
+      <S.CardHero>
         <img src={imgUrl} alt={rocketName} />
-      </div>
+      </S.CardHero>
 
-      <header className="card-header">
-        <h2>{rocketName}</h2>
-        <p>{truncate(description)}</p>
-      </header>
+      <S.CardHeader>
+        <S.CardH3>{rocketName}</S.CardH3>
+        <S.CardPara>{truncate(description)}</S.CardPara>
+      </S.CardHeader>
 
       <a href={wikipedia} target="_blank" rel="external">
-        <footer className="card-footer">Check it out</footer>
+        <S.CardFooter>Check it out</S.CardFooter>
       </a>
-    </article>
+    </S.CardArticle>
   );
 };

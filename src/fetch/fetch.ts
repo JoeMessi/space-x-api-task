@@ -10,10 +10,8 @@ export interface Rocket {
 }
 
 export interface History {
-  ship_id: string;
-  image: string;
-  ship_name: string;
-  url: string;
+  id: string;
+  details: string;
 }
 
 export const fetchRockets = async (): Promise<Rocket[]> => {

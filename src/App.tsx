@@ -1,39 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { SideNav } from "./components/side-nav/SideNav";
 import { Rockets } from "./views/rockets/Rockets";
 import { History } from "./views/history/History";
+import {
+  BASE_ROUTE,
+  ROCKETS_ROUTE,
+  HISTORY_ROUTE,
+} from "./routes/app-routes-constants";
+import { Main } from "./components/main/Main";
+import { Header } from "./components/header/Header";
+import { Home } from "./views/home/Home";
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
-
-  const handleisMenuOpen = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
-
   return (
     <Router>
       <div className="outer-box">
         <div className="inner-box">
-          <SideNav
-            isMenuOpen={isMenuOpen}
-            handleisMenuOpen={handleisMenuOpen}
-          />
-
-          <Routes>
-            <Route
-              path="/rockets"
-              element={
-                <Rockets
-                  isMenuOpen={isMenuOpen}
-                  handleisMenuOpen={handleisMenuOpen}
-                />
-              }
-            />
-            <Route path="/history" element={<History />} />
-            {/* <Route path="/hello" element={<div>Hello</div>} /> */}
-          </Routes>
+          <SideNav />
+          <Header />
+          <Main>
+            <Routes>
+              <Route path={BASE_ROUTE} element={<Home />} />
+              <Route path={ROCKETS_ROUTE} element={<Rockets />} />
+              <Route path={HISTORY_ROUTE} element={<History />} />
+            </Routes>
+          </Main>
         </div>
       </div>
     </Router>

@@ -4,13 +4,16 @@ import { fetchRockets, fetchHistory, Rocket, History } from "../fetch/fetch";
 interface Store {
   rockets: Rocket[];
   history: History[];
+  isMenuOpen: boolean;
   getRockets: () => void;
   getHistory: () => void;
+  handleMenu: () => void;
 }
 
 export const useStore = create<Store>((set) => ({
   rockets: [],
   history: [],
+  isMenuOpen: true,
 
   getRockets: async () => {
     const rockets = await fetchRockets();
@@ -19,7 +22,11 @@ export const useStore = create<Store>((set) => ({
 
   getHistory: async () => {
     const history = await fetchHistory();
-    set((state) => ({ ...state, ships: history }));
+    set((state) => ({ ...state, history: history }));
+  },
+
+  handleMenu: () => {
+    set((state) => ({ ...state, isMenuOpen: !state.isMenuOpen }));
   },
 }));
 

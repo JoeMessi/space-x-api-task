@@ -28,3 +28,8 @@ img {
 a {
   text-decoration: inherit;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
