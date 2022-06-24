@@ -16,7 +16,7 @@ export interface History {
 
 export const fetchRockets = async (): Promise<Rocket[]> => {
   try {
-    const response = await axios.get<Rocket[]>(URLS.getRockets);
+    const response = await axios.get<Rocket[]>(URLS.rockets);
     return response.data;
   } catch (e) {
     console.error(e);
@@ -26,7 +26,7 @@ export const fetchRockets = async (): Promise<Rocket[]> => {
 
 export const fetchHistory = async (): Promise<History[]> => {
   try {
-    const response = await axios.get<History[]>(URLS.getHistory);
+    const response = await axios.get<History[]>(URLS.history);
     return response.data;
   } catch (e) {
     console.error(e);

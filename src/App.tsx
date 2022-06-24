@@ -12,6 +12,7 @@ import {
 import { Main } from "./components/main/Main";
 import { Header } from "./components/header/Header";
 import { Home } from "./views/home/Home";
+import { ErrorView } from "./views/error/ErrorView";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path={BASE_ROUTE} element={<Home />} />
             <Route path={ROCKETS_ROUTE} element={<Rockets />} />
             <Route path={HISTORY_ROUTE} element={<History />} />
+            <Route path="*" element={<ErrorView />} />
           </Routes>
         </Main>
       </S.AppBox>

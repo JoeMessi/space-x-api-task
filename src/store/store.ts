@@ -1,38 +1,31 @@
 import create from "zustand";
 import { fetchRockets, fetchHistory, Rocket, History } from "../fetch/fetch";
 
-interface Store {
+export interface Store {
   rockets: Rocket[];
   history: History[];
   isMenuOpen: boolean;
-  loading: boolean;
-  getRockets: () => void;
-  getHistory: () => void;
-  handleMenu: () => void;
-  setLoading: (loading: boolean) => void;
+  setRockets: () => Promise<void>;
+  setHistory: () => Promise<void>;
+  setMenuOpen: () => void;
 }
 
 export const useStore = create<Store>((set) => ({
   rockets: [],
   history: [],
   isMenuOpen: true,
-  loading: false,
 
-  getRockets: async () => {
+  setRockets: async () => {
     const rockets = await fetchRockets();
     set((state) => ({ ...state, rockets: rockets }));
   },
 
-  getHistory: async () => {
+  setHistory: async () => {
     const history = await fetchHistory();
     set((state) => ({ ...state, history: history }));
   },
 
-  handleMenu: () => {
+  setMenuOpen: () => {
     set((state) => ({ ...state, isMenuOpen: !state.isMenuOpen }));
-  },
-
-  setLoading: (loading: boolean) => {
-    set((state) => ({ ...state, loading: loading }));
   },
 }));

@@ -3,17 +3,17 @@ import { useStore } from "../../store/store";
 import * as S from "./History.styles";
 
 export const History = () => {
-  const { history, getHistory } = useStore((state) => ({
+  const { history, setHistory } = useStore((state) => ({
     history: state.history,
-    getHistory: state.getHistory,
+    setHistory: state.setHistory,
   }));
 
   useEffect(() => {
-    getHistory();
+    setHistory();
   }, []);
 
   return (
-    <S.HistorySection>
+    <S.HistorySection data-testid="history">
       <S.H2Box>
         <S.H2>Cronological History Facts</S.H2>
       </S.H2Box>

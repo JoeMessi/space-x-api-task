@@ -5,10 +5,10 @@ import * as S from "./Home.styles";
 export const Home = () => {
   return (
     <S.HomeSection>
-      <S.H2> Consuming APIs is fun!</S.H2>
-      <S.HomePara>
-        This is a small app where you can see data from the Space X API.
-      </S.HomePara>
+      <h2> Consuming APIs is fun!</h2>
+      <p>
+        This is a small app where you can checkout some cool stuff by Space X.
+      </p>
     </S.HomeSection>
   );
 };

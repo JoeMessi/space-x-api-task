@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useStore } from "../../store/store";
 import { Card } from "../../components/card/Card";
 import * as S from "./Rockets.styles";
 
 export const Rockets = () => {
-  const { rockets, getRockets } = useStore((state) => ({
+  const { rockets, setRockets } = useStore((state) => ({
     rockets: state.rockets,
-    getRockets: state.getRockets,
+    setRockets: state.setRockets,
   }));
 
   useEffect(() => {
-    getRockets();
+    setRockets();
   }, []);
 
   return (
-    <S.RocketsSection>
+    <S.RocketsSection data-testid="rockets">
       <S.H2Box>
         <S.H2>Rockets</S.H2>
       </S.H2Box>
@@ -22,6 +22,7 @@ export const Rockets = () => {
       <S.RocketsCards>
         {rockets.map((rocket) => (
           <Card
+            key={rocket.rocket_id}
             imgUrl={rocket.flickr_images[0]}
             rocketName={rocket.rocket_name}
             description={rocket.description}

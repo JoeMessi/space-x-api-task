@@ -18,7 +18,7 @@ export const Card: FC<CardProps> = ({
   wikipedia,
 }) => {
   return (
-    <S.CardArticle>
+    <S.CardArticle data-testid="article-card">
       <S.CardHero>
         <img src={imgUrl} alt={rocketName} />
       </S.CardHero>
